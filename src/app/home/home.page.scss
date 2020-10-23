@@ -25,3 +25,39 @@
 #container a {
   text-decoration: none;
 }
+
+.form-control{
+  display:flex;
+  justify-content: center;
+  width: 300px;
+  margin-left: 30px;
+}
+
+.control-label{
+  margin-left: 30px;
+
+}
+
+#h2 {
+  font-size: 9px;
+  text-align: center;
+}
+
+.one{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: blue;
+  margin-left: 10px;
+  padding-left: 5px;
+}
+
+.on-card{
+  color:red;
+}
+
+.btn{
+  margin-left: 50px;
+  margin-top: 10px;
+  
+}

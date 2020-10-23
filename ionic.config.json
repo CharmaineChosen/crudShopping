@@ -1,5 +1,7 @@
 {
   "name": "myShopping",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
