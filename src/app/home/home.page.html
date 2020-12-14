@@ -15,86 +15,184 @@
 
   <!-- <div class="container"> -->
 
-  <h2>Add item on list</h2>
+    <h2>Add item on list</h2>
 
-  <form [formGroup]="myForm" (ngSubmit)="CreateItem()">
+    <form [formGroup]="myForm" (ngSubmit)="CreateItem()">
 
-    <ion-item>
-      <ion-label position="floating">Insert new item</ion-label>
-      <ion-input formControlName="name"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Insert new item</ion-label>
+        <ion-input formControlName="name"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Insert Quantity</ion-label>
-      <ion-input formControlName="quantity"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Insert Quantity</ion-label>
+        <ion-input formControlName="quantity"></ion-input>
+      </ion-item>
 
-    <!-- <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Address</ion-label>
         <ion-input formControlName="Address"></ion-input>
       </ion-item> -->
 
-    <ion-item>
-      <ion-button (click)="CreateItem()" [disabled]="myForm.invalid">
-
-        Add
-      </ion-button>
-    </ion-item>
-  </form>
-
-  <ion-card *ngFor="let item of shoppingList" color="primary">
-    <span *ngIf="!item.isEdit; else elseBlock">
-      <ion-card-header>
-        <ion-card-title>{{title}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-
-        <ion-button shape="round" color="success" size="small" (click)="EditItem(item)">
-          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
-
+      <ion-item>
+        <ion-button (click)="CreateItem()" [disabled]="myForm.invalid">
+          
+          Add
         </ion-button>
-        <ion-button shape="round" color="danger" size="small" (click)="RemoveItem(item.id)">
-          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+      </ion-item>
+    </form>
 
-        </ion-button>
-      </ion-card-content>
-    </span>
+    <ion-card *ngFor="let item of shoppingList" color="primary">
+      <span *ngIf="!item.isEdit; else elseBlock">
+        <ion-card-header>
+          <ion-card-title>{{title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+  
+          <ion-button shape="round" color="success" size="small" (click)="EditItem(item)">
+            <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+  
+          </ion-button>
+          <ion-button shape="round" color="danger" size="small" (click)="RemoveItem(item.id)">
+            <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+  
+          </ion-button>
+        </ion-card-content>
+        </span>
 
-    <ng-template #elseBlock>
-      <ion-card-header>
-        <ion-card-title>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                Edit
-              </ion-col>
 
-              <ion-col>
-                <ion-button fill="solid" color="success" size="small" (click)="UpdateItem(item)">
-                  Update
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
+
+
+        <ng-template #elseBlock>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                  Edit
+                  </ion-col>
+                  
+                  <ion-col>
+                    <ion-button fill="solid" color="success" size="small" (click)="UpdateItem(item)">
+                  Update 
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-input type="text" placeholder="Insert new item" [(ngModel)]="item.Editname"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Insert quantity"[(ngModel)]="item.Editquantity"></ion-input>
+            </ion-item>
+            
+          </ion-card-content>
+        </ng-template>
+
+
+
+
+
+
+
+
+
+
+        </ion-card>
+
+        
+    
+      
+    
+   
+    
+    
+    
+    
+    
+                  
+     
+
+    <!-- 
+    class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Insert new item</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name"
+            placeholder="Enter a new product">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="quantity">Insert Quantity</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="quantity" name="quantity" [(ngModel)]="model.quantity"
+              placeholder="Enter quantity number">
+          </div>
+
+        </div> -->
+
+    <!-- <br />
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" (click)="addProduct()">Add</button>
+          </div>
+        </div>
+
+        <h2>Display and delete shopping items</h2>
+
+        <div class="one">
+          <div width=400>Product Name</div>
+          <div width=200>Quantity</div>
+          <div width=400>Actions</div>
+        </div>
+
+        <div class="two">
+          <div *ngFor="let product of products; let i=index">
+            {{product.name}}
+            {{product.quantity}}
+            <button class="btn btn-success" (click)="editProduct(i)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteProduct(i)">Delete</button>
+
+          </div>
+        </div>
+
+        <h2>Update shopping list</h2>
+
         <ion-item>
-          <ion-input type="text" placeholder="Insert new item" [(ngModel)]="item.Editname"></ion-input>
+          <ion-label position="floating">Insert item name</ion-label>
+          <ion-input formControlName="quantity"></ion-input>
         </ion-item>
+
         <ion-item>
-          <ion-input type="text" placeholder="Insert quantity" [(ngModel)]="item.Editquantity"></ion-input>
-        </ion-item>
+          <ion-label position="floating">Quantity</ion-label>
+          <ion-input formControlName="quantity"></ion-input>
+        </ion-item> -->
 
-      </ion-card-content>
-    </ng-template>
+    <!-- <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Insert item name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model2.name"
+                placeholder="Insert a new product name">
+            </div>
+          </div>
 
-  </ion-card>
-  <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-default" color="primary" (click)="updateProduct()">Update</button>
-  </div>
-  </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="quantity">Quantity</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="quantity" name="quantity" [(ngModel)]="model2.quantity"
+                placeholder="Insert the quantity of products">
+            </div> -->
 
-  </div>
-  </form>
+    <!-- <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" color="primary" (click)="updateProduct()">Update</button>
+              </div>
+            </div>
+
+          </div>
+        </form> -->
 </ion-content>
