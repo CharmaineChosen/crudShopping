@@ -24,14 +24,33 @@ export class HomePage implements OnInit {
   items: Item;
   myForm: FormGroup;
 
+  selectedFile: File = null;
+  upload: any;
+
+
   constructor(private firebaseService: FirebaseService, private fb: FormBuilder) { }
 
   ngOnInit() {
 
     this.myForm = this.fb.group({
       name: ['', Validators.required],
-      quantity: ['', Validators.required]
+      quantity: ['', Validators.required],
+      img: ['', Validators.required],
     })
+
+    // onselected(event) {
+    //   const file: File = event.target.files[0];
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(file);
+    //   reader.onloadstart = (p) => {
+    //     console.log(p);
+    //   };
+    //   reader.onloadend = (e) => {
+    //     console.log(e.target);
+    //     this.upload = reader.result;
+    //     this.myForm.get('img').setValue(this.upload);
+    //   };
+    // }
 
 
     this.firebaseService.read_myShop().subscribe(data => {
@@ -42,6 +61,7 @@ export class HomePage implements OnInit {
           isEdit: false,
           name: e.payload.doc.data()['name'],
           quantity: e.payload.doc.data()['quantity'],
+          img: this.myForm.value.img
         };
       })
       console.log(this.shoppingList);
