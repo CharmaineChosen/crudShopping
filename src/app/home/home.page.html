@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-title>
       Shopping List
     </ion-title>
@@ -29,25 +29,44 @@
         <ion-input formControlName="quantity"></ion-input>
       </ion-item>
 
+      <div class="wrap-input">
+        <ion-item>
+          <ion-input type="file" formControlName="img" accept="image/*" (change)="onselected($event)"></ion-input>
+        </ion-item>
+      </div>
+
       <!-- <ion-item>
         <ion-label position="floating">Address</ion-label>
         <ion-input formControlName="Address"></ion-input>
       </ion-item> -->
 
       <ion-item>
-        <ion-button (click)="CreateItem()" [disabled]="myForm.invalid">
-          
+        <ion-button (click)="CreateItem()" [disabled]="myForm.invalid"> 
           Add
         </ion-button>
       </ion-item>
     </form>
 
-    <ion-card *ngFor="let item of shoppingList" color="primary">
+    <ion-card *ngFor="let item of shoppingList" style="background-color:rgb(77, 124, 77);">
       <span *ngIf="!item.isEdit; else elseBlock">
-        <ion-card-header>
+        <!-- <ion-card-header> -->
           <ion-card-title>{{title}}</ion-card-title>
-        </ion-card-header>
+        <!-- </ion-card-header> -->
         <ion-card-content>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+              {{name}}
+              </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                {{quantity}}
+                </ion-col>
+                </ion-row>
+          </ion-grid>
   
           <ion-button shape="round" color="success" size="small" (click)="EditItem(item)">
             <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
@@ -64,11 +83,11 @@
 
 
         <ng-template #elseBlock>
-          <ion-card-header>
-            <ion-card-title>
+          <!-- <ion-card-header>
+            <ion-card-title> -->
               <ion-grid>
                 <ion-row>
-                  <ion-col>
+                  <ion-col style="color:white;">
                   Edit
                   </ion-col>
                   
@@ -79,9 +98,9 @@
                   </ion-col>
                 </ion-row>
               </ion-grid>
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
+            <!-- </ion-card-title>
+          </ion-card-header> -->
+          <!-- <ion-card-content> -->
             <ion-item>
               <ion-input type="text" placeholder="Insert new item" [(ngModel)]="item.Editname"></ion-input>
             </ion-item>
@@ -89,18 +108,8 @@
               <ion-input type="text" placeholder="Insert quantity"[(ngModel)]="item.Editquantity"></ion-input>
             </ion-item>
             
-          </ion-card-content>
+          <!-- </ion-card-content> -->
         </ng-template>
-
-
-
-
-
-
-
-
-
-
         </ion-card>
 
         
