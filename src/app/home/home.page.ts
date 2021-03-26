@@ -38,23 +38,7 @@ export class HomePage implements OnInit {
       img: ['', Validators.required],
     })
 
-    // onselected(event) {
-    //   const file: File = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.readAsDataURL(file);
-    //   reader.onloadstart = (p) => {
-    //     console.log(p);
-    //   };
-    //   reader.onloadend = (e) => {
-    //     console.log(e.target);
-    //     this.upload = reader.result;
-    //     this.myForm.get('img').setValue(this.upload);
-    //   };
-    // }
-
-
     this.firebaseService.read_myShop().subscribe(data => {
-
       this.shoppingList = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -67,9 +51,20 @@ export class HomePage implements OnInit {
       console.log(this.shoppingList);
 
     });
+  }
 
-
-
+  onSelected(event) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadstart = (p) => {
+      console.log(p);
+    };
+    reader.onloadend = (e) => {
+      console.log(e.target);
+      this.upload = reader.result;
+      this.myForm.get('img').setValue(this.upload);
+    };
   }
 
   CreateItem() {
@@ -87,14 +82,18 @@ export class HomePage implements OnInit {
   }
 
   EditItem(item){
+    console.log('edit - id: ', item)
     item.isEdit = true;
     item.Editname = item.name;
+    item.Editimage = item.img;
     item.Editquantity = item.quantity;
   }
 
   UpdateItem(itemRow){
+    console.log('update - id: ', itemRow)
     let item = {};
     item['name'] = itemRow.Editname;
+    item['img'] = itemRow.Editimage;
     item['quantity'] = itemRow.Editquantity;
     this.firebaseService.update_myShop(itemRow.id, item);
     itemRow.isEdit = false;

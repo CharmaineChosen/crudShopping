@@ -1,21 +1,25 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Shopping List
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content>
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <!-- <div class="container"> -->
 
-    <h2>Add item on list</h2>
+    <div class="background">
+      <h2 style="text-align: center; font-weight: bold;">Shopping List</h2>
+
+   <div class="center">
+    <h2 style="text-align: center;">Add item on list</h2>
 
     <form [formGroup]="myForm" (ngSubmit)="CreateItem()">
 
@@ -31,7 +35,7 @@
 
       <div class="wrap-input">
         <ion-item>
-          <ion-input type="file" formControlName="img" accept="image/*" (change)="onselected($event)"></ion-input>
+          <ion-input type="file" formControlName="img" accept="image/*" (change)="onSelected($event)"></ion-input>
         </ion-item>
       </div>
 
@@ -46,24 +50,29 @@
         </ion-button>
       </ion-item>
     </form>
+  
 
-    <ion-card *ngFor="let item of shoppingList" style="background-color:rgb(77, 124, 77);">
+    <ion-card *ngFor="let item of shoppingList" style="background-color:pink;">
       <span *ngIf="!item.isEdit; else elseBlock">
         <!-- <ion-card-header> -->
-          <ion-card-title>{{title}}</ion-card-title>
+          <ion-card-title>{{item?.title}}</ion-card-title>
         <!-- </ion-card-header> -->
         <ion-card-content>
 
+          
+
           <ion-grid>
+            <img style="width: 150px; height: 80px;" src="{{item?.img}}">
+            <!-- <ion-img [src]="{{item?.img}}"></ion-img> -->
             <ion-row>
               <ion-col>
-              {{name}}
+              {{item?.name}}
               </ion-col>
               </ion-row>
 
               <ion-row>
                 <ion-col>
-                {{quantity}}
+                {{item?.quantity}}
                 </ion-col>
                 </ion-row>
           </ion-grid>
@@ -101,6 +110,9 @@
             <!-- </ion-card-title>
           </ion-card-header> -->
           <!-- <ion-card-content> -->
+              <ion-item>
+                <ion-input type="file" [(ngModel)]="item.Editimage" accept="image/*" (change)="onSelected($event)"></ion-input>
+              </ion-item>
             <ion-item>
               <ion-input type="text" placeholder="Insert new item" [(ngModel)]="item.Editname"></ion-input>
             </ion-item>
@@ -111,7 +123,7 @@
           <!-- </ion-card-content> -->
         </ng-template>
         </ion-card>
-
+</div>
         
     
       
@@ -196,12 +208,6 @@
                 placeholder="Insert the quantity of products">
             </div> -->
 
-    <!-- <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" color="primary" (click)="updateProduct()">Update</button>
-              </div>
-            </div>
 
-          </div>
-        </form> -->
+        </div>
 </ion-content>
